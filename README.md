@@ -1,6 +1,9 @@
 # FaceBot
 FaceBot is a Discord bot that uses the [Microsoft Azure Face API](https://docs.microsoft.com/en-us/azure/cognitive-services/face/overview) to analyze faces as a Discord bot.
-# Installation from source with Docker (recommended)
+# Docker Installation (recommended)
+## From Docker Hub
+Simply use `docker run -d -e BOT_TOKEN=(bot token) -e FACE_KEY=(Azure Face API Key) icomputer7/facebot` to start FaceBot.
+## From source
 Clone this repo and cd into it. Run `docker build -t facebot .` Let it do its thing. Then use `docker run -d -e BOT_TOKEN=(bot token) -e FACE_KEY=(Azure Face API Key) facebot` to start FaceBot.
 # Environment Variables
 * `BOT_TOKEN` - This is the Discord bot token.
