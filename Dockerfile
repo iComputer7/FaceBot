@@ -1,13 +1,20 @@
-FROM node:alpine
+FROM node:alpine AS build
 
-RUN mkdir -p /usr/src/bot && mkdir /usr/src/bot/cropped_faces
+RUN mkdir -p /usr/src/bot
 WORKDIR /usr/src/bot
 
-COPY package.json /usr/src/bot
+COPY . /usr/src/bot/
 RUN npm install
+RUN npx tsc
 
-RUN apk update && apk upgrade && apk add graphicsmagick
+FROM node:alpine
 
-COPY . /usr/src/bot
+RUN mkdir -p /usr/src/bot
+WORKDIR /usr/src/bot
 
-CMD ["node", "index.js"]
+RUN apk update && apk upgrade && apk add graphicsmagick && rm /var/cache/apk/*
+
+COPY --from=build /usr/src/bot/node_modules /usr/src/bot/node_modules
+COPY --from=build /usr/src/bot/build /usr/src/bot/build
+
+CMD ["node", "build/index.js"]
