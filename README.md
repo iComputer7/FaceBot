@@ -8,6 +8,11 @@ FaceBot is a Discord bot that uses the [Microsoft Azure Face API](https://docs.m
 # Docker Installation (recommended)
 I designed FaceBot to be run in Docker so it can be deployed easier, and it's also how I run FaceBot in production.
 
+## Using prebuilt image
+Use this command to start FaceBot:
+
+`docker run -d -e BOT_TOKEN=(bot token) -e FACE_KEY=(Azure Face API Key) ghcr.io/icomputer7/facebot`
+
 ## From source
 Clone this repo and cd into it. Run `docker build -t facebot .` Let it do its thing. Then use `docker run -d -e BOT_TOKEN=(bot token) -e FACE_KEY=(Azure Face API Key) facebot` to start FaceBot.
 
@@ -28,7 +33,7 @@ Clone this repo and cd into it. Run `docker build -t facebot .` Let it do its th
 Upload an image with the caption `;face` or just say `;face (image url)`
 
 # Required SQL Tables
-I didn't save the actual SQL I used to make that table but here's a basic schema that you need to copy:
+I didn't save the actual SQL I used to make this table but here's a basic schema that you need to copy:
 
 ## general-log
 * `id` - auto-incrementing integer
